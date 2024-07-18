@@ -11,13 +11,13 @@ const int GREEN_LED = 12; // номер зелёного светодиода
 const int BUZZER = 10;    // номер пина активного зумера
 
 // Определяем размерность клавиатуры
-const byte ROWS = 4; // четыре строки
-const byte COLS = 4; // четыре столбца
+const byte ROWS = 4;      // четыре строки
+const byte COLS = 4;      // четыре столбца
 
 bool isPasswordSpecified = false; // переменная для статуса указания пароля
 
-String password = "";     // переменная для пароля
-String inputString = "";  // перменная строки пароля
+String password = "";         // переменная для пароля
+String inputString = "";      // перменная строки пароля
 
 uint32_t currentMillis = 0;   // переменная для хранения текущего времени в миллисекундах
 uint32_t previousMillis = 0;  // переменная для сохранения милисекунд после последнего события
@@ -52,10 +52,11 @@ void StaticMessageShowMethod()
   lcd.print(countdown);
 
   lcd.setCursor(10, 0);
-  lcd.print("Attempts: ");
+  lcd.print("Attempts:");
   lcd.print(numberOfAttempts);
 }
 
+/* Функция вывода сообщений нарушения длины пароля */
 void IncorrectPasswordMessageMethod() 
 {
   lcd.clear();
