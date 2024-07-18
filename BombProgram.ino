@@ -17,13 +17,13 @@ const byte COLS = 4;      // четыре столбца
 bool isPasswordSpecified = false; // переменная для статуса указания пароля
 
 String password = "";         // переменная для пароля
-String inputString = "";      // перменная строки пароля
+String inputString = "";      // переменная строки пароля
 
 uint32_t currentMillis = 0;   // переменная для хранения текущего времени в миллисекундах
 uint32_t previousMillis = 0;  // переменная для сохранения милисекунд после последнего события
 
 int numberOfAttempts = 3;     // количество попыток на обезвреживание 
-int countdown = 60;           // переменные для отсчета секунд
+int countdown = 15;           // переменные для отсчета секунд
 
 // Определяем символы клавиатуры
 char arrayKeyboardCharacters[ROWS][COLS] = {
@@ -49,7 +49,7 @@ void StaticMessageShowMethod()
   lcd.setCursor(0, 0); 
   lcd.print("Timer:");
   lcd.setCursor(7, 0);
-  lcd.print(countdown);
+  lcd.print(countdown < 10 ? "0" + String(countdown) : String(countdown));
 
   lcd.setCursor(10, 0);
   lcd.print("Attempts:");
@@ -89,7 +89,7 @@ void setup()
     while (!isPasswordSpecified) 
     {
       lcd.setCursor(0, 0);
-      lcd.print("Enter the password: ");
+      lcd.print("Enter the pass:");
       
       char inputSymbol = keypad.getKey(); 
 
@@ -113,17 +113,14 @@ void setup()
         {        
           password += inputSymbol;
           
-          lcd.setCursor(0, 1);                  
-          lcd.print("You pressed: ");     
-          lcd.print(password);             
-          lcd.setCursor(0, 0);               
+          lcd.setCursor(5, 1);                   
+          lcd.print(password);                        
         }
       }
     }
   }
   
-  lcd.clear();
-  lcd.setCursor(2, 0);         
+  lcd.clear();         
   lcd.print("BOMB IS ACTIVATE!");
   
   delay(1500);
@@ -187,7 +184,7 @@ void loop()
     lcd.setCursor(0, 0); 
     lcd.print("Timer:");
     lcd.setCursor(7, 0);
-    lcd.print(countdown);
+    lcd.print(countdown < 10 ? "0" + String(countdown) : String(countdown));
   }
   
   char inputSymbol = keypad.getKey();              
